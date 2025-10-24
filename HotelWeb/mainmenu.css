@@ -1,418 +1,91 @@
-.mn-hnh-chnh {
-  background-color: #d8f5e3;
-  width: 100%;
-  min-width: 1440px;
-  min-height: 2500px;
-  position: relative;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-.mn-hnh-chnh .hero-image {
-  position: absolute;
-  width: 88.89%;
-  top: calc(50.00% - 725px);
-  left: 3.89%;
-  height: 640px;
-  object-fit: cover;
-}
+@import url("layout.css");
 
-.mn-hnh-chnh .text-wrapper {
-  position: absolute;
-  top: 1413px;
-  left: calc(50.00% - 640px);
-  width: 624px;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-weight: 600;
-  color: #000000;
-  font-size: 48px;
-  letter-spacing: -0.96px;
-  line-height: normal;
+/* Chỉ giữ lại các style riêng của trang mainmenu */
+.hero-section {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
 }
-
-.mn-hnh-chnh .frame {
-  display: flex;
-  width: 1279px;
-  align-items: center;
-  gap: 32px;
-  position: absolute;
-  top: 1525px;
-  left: 81px;
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
-
-.mn-hnh-chnh .card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-  position: relative;
-  flex: 1;
-  flex-grow: 1;
+.hero-title {
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    font-size: 64px;
 }
-
-.mn-hnh-chnh .image {
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  height: 405px;
-  border-radius: 8px;
-  background-image: url(./img/phongdon.webp);
-  background-size: cover;
-  background-position: 50% 50%;
+.hero-subtitle {
+    font-family: var(--subheading-font-family);
+    font-weight: var(--subheading-font-weight);
+    color: #000000bf;
+    font-size: var(--subheading-font-size);
 }
-
-.mn-hnh-chnh .copy {
-  display: flex;
-  flex-direction: column;
-  width: 381px;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 4px;
-  position: relative;
-  flex: 0 0 auto;
+.hero-button {
+    all: unset; box-sizing: border-box; display: inline-flex; padding: 20px 32px;
+    align-items: center; gap: 8px; background-color: #000000; border-radius: 8px;
+    box-shadow: var(--button-shadow); color: #ffffff; font-size: 24px; cursor: pointer;
 }
-
-.mn-hnh-chnh .div {
-  position: relative;
-  align-self: stretch;
-  margin-top: -1.00px;
-  font-family: "Inter-Medium", Helvetica;
-  font-weight: 500;
-  color: #000000;
-  font-size: 24px;
-  letter-spacing: 0;
-  line-height: 36px;
+.hero-image {
+    width: 100%;
+    height: 640px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 250px;
 }
-
-.mn-hnh-chnh .p {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
-  color: #828282;
-  font-size: 24px;
-  letter-spacing: 0;
-  line-height: 36px;
+.room-list-section {
+    margin-top: 60px;
 }
-
-.mn-hnh-chnh .card-2 {
-  display: flex;
-  flex-direction: column;
-  height: 541px;
-  align-items: flex-start;
-  gap: 24px;
-  position: relative;
-  flex: 1;
-  flex-grow: 1;
+.room-list-title {
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    font-size: 48px;
+    margin-bottom: 40px;
 }
-
-.mn-hnh-chnh .image-2 {
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  height: 405px;
-  border-radius: 8px;
-  background-image: url(./img/phongdoi.webp);
-  background-size: cover;
-  background-position: 50% 50%;
+.room-cards-container {
+    display: flex;
+    gap: 32px;
+    width: 100%;
 }
-
-.mn-hnh-chnh .image-3 {
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  height: 405px;
-  border-radius: 8px;
-  background-image: url(./img/phongvip.jpg);
-  background-size: cover;
-  background-position: 50% 50%;
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
-
-.mn-hnh-chnh .button {
-  all: unset;
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  position: absolute;
-  top: 2097px;
-  left: 519px;
-  background-color: #000000;
-  border-radius: 8px;
-  box-shadow: var(--button-shadow);
+.image-placeholder {
+    width: 100%;
+    height: 405px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
 }
-
-.mn-hnh-chnh .text-wrapper-2 {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  margin-top: -1.00px;
-  font-family: "Inter-Medium", Helvetica;
-  font-weight: 500;
-  color: #ffffff;
-  font-size: 24px;
-  letter-spacing: 0;
-  line-height: 36px;
-  white-space: nowrap;
+.image-don { background-image: url(./img/phongdon.webp); }
+.image-doi { background-image: url(./img/phongdoi.webp); }
+.image-vip { background-image: url(./img/phongvip.jpg); }
+.copy {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
-
-.mn-hnh-chnh .copy-2 {
-  display: flex;
-  flex-direction: column;
-  width: 844px;
-  align-items: flex-start;
-  gap: 40px;
-  position: absolute;
-  top: 212px;
-  left: 79px;
+.room-name {
+    font-family: "Inter-Medium", Helvetica;
+    font-weight: 500;
+    font-size: 24px;
 }
-
-.mn-hnh-chnh .page-title {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-  position: relative;
-  align-self: stretch;
-  width: 100%;
-  flex: 0 0 auto;
+.room-desc {
+    font-family: "Inter-Regular", Helvetica;
+    font-weight: 400;
+    color: #828282;
+    font-size: 20px;
 }
-
-.mn-hnh-chnh .text-wrapper-3 {
-  position: relative;
-  align-self: stretch;
-  margin-top: -1.00px;
-  font-family: "Inter-Bold", Helvetica;
-  font-weight: 700;
-  color: #000000;
-  font-size: 64px;
-  letter-spacing: -1.28px;
-  line-height: normal;
-}
-
-.mn-hnh-chnh .text-wrapper-4 {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  font-family: var(--subheading-font-family);
-  font-weight: var(--subheading-font-weight);
-  color: #000000bf;
-  font-size: var(--subheading-font-size);
-  letter-spacing: var(--subheading-letter-spacing);
-  line-height: var(--subheading-line-height);
-  font-style: var(--subheading-font-style);
-}
-
-.mn-hnh-chnh .div-wrapper {
-  all: unset;
-  box-sizing: border-box;
-  display: inline-flex;
-  padding: 20px 32px;
-  position: relative;
-  flex: 0 0 auto;
-  align-items: center;
-  gap: 8px;
-  background-color: #000000;
-  border-radius: 8px;
-  box-shadow: var(--button-shadow);
-}
-
-.mn-hnh-chnh .button-2 {
-  all: unset;
-  box-sizing: border-box;
-  display: inline-flex;
-  padding: 12px 24px;
-  position: absolute;
-  top: 2097px;
-  left: 81px;
-  align-items: center;
-  gap: 8px;
-  background-color: #000000;
-  border-radius: 8px;
-  box-shadow: var(--button-shadow);
-}
-
-.mn-hnh-chnh .button-3 {
-  all: unset;
-  box-sizing: border-box;
-  display: inline-flex;
-  padding: 12px 24px;
-  position: absolute;
-  top: 2097px;
-  left: 936px;
-  align-items: center;
-  gap: 8px;
-  background-color: #000000;
-  border-radius: 8px;
-  box-shadow: var(--button-shadow);
-}
-
-.mn-hnh-chnh .navigation {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  height: 164px;
-  display: flex;
-  justify-content: space-between;
-  background-color: #ffffff;
-}
-
-.mn-hnh-chnh .text-wrapper-5 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-  width: 223px;
-  height: 64px;
-  margin-left: 80px;
-  text-shadow: 0px 4px 4px #00000040;
-  font-family: var(--m3-display-large-font-family);
-  font-weight: var(--m3-display-large-font-weight);
-  color: #02afff;
-  font-size: var(--m3-display-large-font-size);
-  letter-spacing: var(--m3-display-large-letter-spacing);
-  line-height: var(--m3-display-large-line-height);
-  white-space: nowrap;
-  font-style: var(--m3-display-large-font-style);
-}
-
-.mn-hnh-chnh .items {
-  display: inline-flex;
-  margin-top: 56px;
-  width: 556px;
-  height: 52px;
-  position: relative;
-  margin-right: 80px;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--variable-collection-spacing-m);
-}
-
-.mn-hnh-chnh .text-wrapper-6 {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  font-family: var(--body-text-font-family);
-  font-weight: var(--body-text-font-weight);
-  color: #000000;
-  font-size: var(--body-text-font-size);
-  letter-spacing: var(--body-text-letter-spacing);
-  line-height: var(--body-text-line-height);
-  white-space: nowrap;
-  font-style: var(--body-text-font-style);
-}
-
-.mn-hnh-chnh .button-4 {
-  all: unset;
-  box-sizing: border-box;
-  display: inline-flex;
-  justify-content: center;
-  padding: 14px 24px;
-  position: relative;
-  flex: 0 0 auto;
-  align-items: center;
-  gap: 8px;
-  background-color: #000000;
-  border-radius: 8px;
-  box-shadow: var(--button-shadow);
-}
-
-.mn-hnh-chnh .text-wrapper-7 {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  margin-top: -1.00px;
-  font-family: var(--small-text-font-family);
-  font-weight: var(--small-text-font-weight);
-  color: #ffffff;
-  font-size: var(--small-text-font-size);
-  letter-spacing: var(--small-text-letter-spacing);
-  line-height: var(--small-text-line-height);
-  white-space: nowrap;
-  font-style: var(--small-text-font-style);
-}
-
-.mn-hnh-chnh .navigation-footer {
-  position: absolute;
-  width: 100%;
-  top: 2236px;
-  left: 0;
-  height: 264px;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-}
-
-.mn-hnh-chnh .divider {
-  margin-left: 80px;
-  width: 1280px;
-  height: 1px;
-  object-fit: cover;
-}
-
-.mn-hnh-chnh .text-wrapper-8 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 80px;
-  width: 160px;
-  height: 36px;
-  margin-top: 51px;
-  font-family: var(--subheading-font-family);
-  font-weight: var(--subheading-font-weight);
-  color: #000000;
-  font-size: var(--subheading-font-size);
-  letter-spacing: var(--subheading-letter-spacing);
-  line-height: var(--subheading-line-height);
-  white-space: nowrap;
-  font-style: var(--subheading-font-style);
-}
-
-.mn-hnh-chnh .button-5 {
-  all: unset;
-  box-sizing: border-box;
-  display: flex;
-  margin-left: 1102px;
-  width: 310px;
-  height: 62px;
-  position: relative;
-  margin-top: 13px;
-  justify-content: center;
-  padding: 16px 32px;
-  align-items: center;
-  gap: 8px;
-  background-color: #000000;
-  border-radius: 8px;
-  box-shadow: var(--button-shadow);
-}
-
-.mn-hnh-chnh .text-wrapper-9 {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  margin-top: -1.00px;
-  font-family: var(--body-text-font-family);
-  font-weight: var(--body-text-font-weight);
-  color: #ffffff;
-  font-size: var(--body-text-font-size);
-  letter-spacing: var(--body-text-letter-spacing);
-  line-height: var(--body-text-line-height);
-  white-space: nowrap;
-  font-style: var(--body-text-font-style);
+.card-button {
+    all: unset; box-sizing: border-box; display: inline-flex; padding: 12px 24px;
+    align-items: center; justify-content: center; background-color: #000000;
+    border-radius: 8px; box-shadow: var(--button-shadow); color: #ffffff;
+    font-size: 18px; cursor: pointer; margin-top: 16px;
 }

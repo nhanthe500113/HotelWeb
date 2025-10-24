@@ -8,45 +8,70 @@
     <link rel="stylesheet" href="resroom.css" />
   </head>
   <body>
-    <div class="n-t-phng">
-      <div class="navigation">
-        <a href="mainmenu.html" class="text-wrapper">AA Hotel</a>
-        <div class="items">
-          <div class="text-wrapper-A">Đặt Phòng</div>
-          <div class="div">Nhân Viên</div>
-          <a href="register.html"></a><div class="div">Đăng Ký</div></a>
-          <button class="button"><div class="text-wrapper-2">Đăng Nhập</div></button>
-        </div>
-      </div>
-      <div class="group">
-        <div class="rectangle"></div>
-        <div class="text-wrapper-3">Đặt Phòng</div>
-        <div class="form">
-          <div class="input-2">
-            <div class="text-wrapper-4">Số Ngày Ở</div>
-            <input type="number" class="field-2">
+    <div class="page-container">
+      <header class="navigation">
+        <div class="nav-content-wrapper">
+          <a href="mainmenu.html" class="nav-logo">AA Hotel</a>
+          <div class="nav-items">
+            <div class="nav-link active">Đặt Phòng</div>
+            <a href="staff.html" class="nav-link">Nhân Viên</a>
+            <a href="register.html" class="nav-link">Đăng Ký</a>
+            <a href="login.html" class="nav-button"><div class="nav-button-text">Đăng Nhập</div></a>
           </div>
-          <div class="input-2">
-    <label class="text-wrapper-4" for="room_type">Loại Phòng</label>
-    <select id="room_type" name="room_type" class="field-2">
-      <option value="">-- Chọn loại phòng --</option>
-      <option value="single">Phòng Đơn</option>
-      <option value="double">Phòng Đôi</option>
-      <option value="vip">Phòng VIP</option>
-    </select>
-  </div>
-          <div class="input-2">
-    <label class="text-wrapper-4" for="available_rooms">Danh Sách Phòng Trống</label>
-    <select id="available_rooms" name="available_rooms" class="field-2">
-      <option value="">-- Chọn phòng --</option>
-      <option value="101">Phòng 101</option>
-      <option value="102">Phòng 102</option>
-      <option value="201">Phòng 201</option>
-      <option value="202">Phòng 202</option>
-    </select>
-          <button class="div-wrapper"><div class="text-wrapper-5">Đặt Phòng</div></button>
         </div>
-      </div>
+      </header>
+      
+      <main class="main-content-full-width">
+        <div class="hero-header">
+            <div class="hero-dimmer"></div>
+            <h1 class="hero-title">Đặt Phòng</h1>
+        </div>
+
+        <div class="room-list">
+            <div class="room-item">
+                <div class="room-image room-image-don"></div>
+                <div class="room-info">
+                    <h2 class="room-name">Phòng Đơn</h2>
+                    <p class="room-description">1 Giường Lớn<br />Diện Tích: 35 m²</p>
+                    <div class="room-actions">
+                        <a href="booking.html" class="action-button primary">Đặt Phòng</a>
+                        <div class="action-button secondary">150,000VNĐ/Ngày</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-item reverse">
+                <div class="room-image room-image-doi"></div>
+                <div class="room-info">
+                    <h2 class="room-name">Phòng Đôi</h2>
+                    <p class="room-description">2 Giường Lớn<br />Diện Tích: 85 m²<br />View Ra Biển</p>
+                    <div class="room-actions">
+                        <a href="booking.html" class="action-button primary">Đặt Phòng</a>
+                        <div class="action-button secondary">250,000VNĐ/Ngày</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-item">
+                <div class="room-image room-image-vip"></div>
+                <div class="room-info">
+                    <h2 class="room-name">Phòng VIP</h2>
+                    <p class="room-description">1 Giường Lớn<br />Diện Tích: 55 m²<br />View ra Biển<br />Được Phục Vụ Các Bữa Ăn</p>
+                    <div class="room-actions">
+                        <a href="booking.html" class="action-button primary">Đặt Phòng</a>
+                        <div class="action-button secondary">400,000VNĐ/Ngày</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Khách Sạn AA</div>
+            <a href="admin.html"><button class="footer-button"><div class="footer-button-text">Quản Trị Hệ Thống</div></button></a>
+        </div>
+      </footer>
     </div>
   </body>
 </html>

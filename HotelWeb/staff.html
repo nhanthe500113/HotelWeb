@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="staff.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <header class="navigation">
+        <div class="nav-content-wrapper">
+          <a href="mainmenu.html" class="nav-logo">AA Hotel</a>
+          <div class="nav-items">
+            <a href="reserveroom.html" class="nav-link">Đặt Phòng</a>
+            <div class="nav-link active">Nhân Viên</div>
+            <a href="register.html" class="nav-link">Đăng Ký</a>
+            <a href="login.html" class="nav-button"><div class="nav-button-text">Đăng Nhập</div></a>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <h1 class="panel-title">Panel Nhân Viên</h1>
+        <div class="panel">
+          <section class="management-section">
+            <h2>Quản Lý Phòng</h2>
+            <div class="controls-grid-rooms">
+              <div class="input-group full-width"><label>Số Phòng</label><input type="text" /></div>
+              <div class="input-group full-width">
+                <label>Loại Phòng</label>
+                <select>
+                  <option hidden>Chọn loại phòng</option>
+                  <option value="don">Phòng Đơn</option>
+                  <option value="doi">Phòng Đôi</option>
+                  <option value="vip">Phòng VIP</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label>Trạng Thái</label>
+                <select>
+                  <option hidden>Chọn trạng thái</option>
+                  <option value="trong">Trống</option>
+                  <option value="da_dat">Đã Đặt</option>
+                  <option value="dang_don_dep">Đang Dọn Dẹp</option>
+                </select>
+              </div>
+              <div class="input-group"><label>Giá:</label><input type="text" placeholder="VND"/></div>
+            </div>
+            <div class="action-buttons">
+                <input type="text" class="search-input" placeholder="Nhập số phòng để tìm">
+                <button class="btn-primary">Tìm Kiếm</button>
+                <div class="button-group-right">
+                    <button class="btn-secondary">Cập Nhật</button>
+                    <button class="btn-primary">Tạo Phòng</button>
+                    <button class="btn-primary">Xóa Phòng</button>
+                </div>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Số Phòng</th>
+                    <th>Loại Phòng</th>
+                    <th>Trạng Thái</th>
+                    <th>Giá</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>111</td>
+                    <td>Phòng Đơn</td>
+                    <td>Đã Đặt</td>
+                    <td>150,000VND/Ngày</td>
+                  </tr>
+                  <tr>
+                    <td>112</td>
+                    <td>Phòng VIP</td>
+                    <td>Còn Trống</td>
+                    <td>400,000VND/Ngày</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="management-section">
+            <h2>Quản Lý Khách Hàng</h2>
+            <div class="controls-grid-customers">
+              <div class="input-group"><label>Họ Tên</label><input type="text" /></div>
+              <div class="input-group"><label>CCCD</label><input type="text" /></div>
+              <div class="input-group"><label>Phòng Đang Ở</label><input type="text" /></div>
+              <div class="input-group"><label>Thời Gian Ở</label><input type="text" /></div>
+            </div>
+             <div class="action-buttons customer-actions">
+              <button class="btn-primary">Thêm</button>
+              <button class="btn-primary">Sửa</button>
+              <button class="btn-primary">Xóa</button>
+              <a href="orderdetail.html"><div class="btn-secondary">In Hóa Đơn</div></a>
+              <div class="search-group-right">
+                <input type="text" placeholder="Nhập Số CCCD">
+                <button class="btn-primary">Tìm Kiếm</button>
+              </div>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>CCCD</th>
+                    <th>Họ và Tên</th>
+                    <th>Phòng Đang Ở</th>
+                    <th>Thời Gian Ở</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>13131413413414</td>
+                    <td>Nguyễn Thị N</td>
+                    <td>111</td>
+                    <td>1 ngày</td>
+                  </tr>
+                  <tr>
+                    <td>45646538346363</td>
+                    <td>Trần Văn B</td>
+                    <td>234</td>
+                    <td>4 ngày</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Khách Sạn AA</div>
+            <a href="admin.html"><button class="footer-button"><div class="footer-button-text">Quản Trị Hệ Thống</div></button></a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

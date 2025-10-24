@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="booking.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <header class="navigation">
+        <div class="nav-content-wrapper">
+          <a href="mainmenu.html" class="nav-logo">AA Hotel</a>
+          <div class="nav-items">
+            <div class="nav-link active">Đặt Phòng</div>
+            <a href="staff.html" class="nav-link">Nhân Viên</a>
+            <a href="register.html" class="nav-link">Đăng Ký</a>
+            <a href="login.html" class="nav-button"><div class="nav-button-text">Đăng Nhập</div></a>
+          </div>
+        </div>
+      </header>
+      
+      <main class="main-content">
+        <div class="form-container">
+            <h1 class="form-title">Đặt Phòng</h1>
+            <form class="form">
+                <div class="input-group">
+                    <label>Số Ngày Ở</label>
+                    <input type="number" class="field">
+                </div>
+                <div class="input-group">
+                    <label for="room_type">Loại Phòng</label>
+                    <select id="room_type" name="room_type" class="field">
+                        <option value="">-- Chọn loại phòng --</option>
+                        <option value="single">Phòng Đơn</option>
+                        <option value="double">Phòng Đôi</option>
+                        <option value="vip">Phòng VIP</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="available_rooms">Danh Sách Phòng Trống</label>
+                    <select id="available_rooms" name="available_rooms" class="field">
+                        <option value="">-- Chọn phòng --</option>
+                        <option value="101">Phòng 101</option>
+                        <option value="102">Phòng 102</option>
+                        <option value="201">Phòng 201</option>
+                        <option value="202">Phòng 202</option>
+                    </select>
+                </div>
+                <button class="submit-button" type="submit">Đặt Phòng</button>
+            </form>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Khách Sạn AA</div>
+            <a href="admin.html"><button class="footer-button"><div class="footer-button-text">Quản Trị Hệ Thống</div></button></a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

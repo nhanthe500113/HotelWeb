@@ -1,5 +1,6 @@
 @import url("layout.css");
 
+/* Tái sử dụng style của các trang form khác để đảm bảo tính nhất quán */
 .form-container {
     background-color: #d9d9d9;
     padding: 40px;
@@ -39,10 +40,36 @@
     box-shadow: var(--button-shadow);
     font-size: var(--small-text-font-size);
 }
+
+.actions-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 24px;
+}
+
 .submit-button {
-    all: unset; box-sizing: border-box; display: flex; width: 100%; align-items: center;
-    justify-content: center; padding: 16px 0; background-color: #000000;
-    border-radius: 8px; box-shadow: var(--button-shadow); margin-top: 16px;
+    all: unset; box-sizing: border-box; display: flex; align-items: center;
+    justify-content: center; padding: 16px 40px; background-color: #000000;
+    border-radius: 8px; box-shadow: var(--button-shadow);
     cursor: pointer; color: #ffffff; font-family: var(--body-text-font-family);
     font-size: var(--body-text-font-size);
+    flex-shrink: 0; /* Ngăn nút bị co lại */
+}
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.form-link {
+    font-family: var(--small-text-font-family);
+    font-size: var(--small-text-font-size);
+    color: #007bff;
+    text-decoration: none;
+}
+.form-link:hover {
+    text-decoration: underline;
 }

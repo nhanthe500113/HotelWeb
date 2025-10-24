@@ -8,56 +8,66 @@
     <link rel="stylesheet" href="mainmenu.css" />
   </head>
   <body>
-    <div class="mn-hnh-chnh">
-      <img class="hero-image" src="img/hotel.jfif" />
-      <div class="text-wrapper">Danh Sách Phòng</div>
-      <div class="frame">
-        <div class="card">
-          <div class="image"></div>
-          <div class="copy">
-            <div class="div">Phòng Đơn</div>
-            <p class="p">Phòng đơn tiêu chuẩn với các dịch vụ cơ bản,</p>
+    <div class="page-container">
+      <header class="navigation">
+        <div class="nav-content-wrapper">
+          <div class="nav-logo active">AA Hotel</div>
+          <div class="nav-items">
+            <a href="reserveroom.html" class="nav-link">Đặt Phòng</a>
+            <a href="staff.html" class="nav-link">Nhân Viên</a>
+            <a href="register.html" class="nav-link">Đăng Ký</a>
+            <a href="login.html" class="nav-button"><div class="nav-button-text">Đăng Nhập</div></a>
           </div>
         </div>
-        <div class="card-2">
-          <div class="image-2"></div>
-          <div class="copy">
-            <div class="div">Phòng Đôi</div>
-            <p class="p">Lý tưởng cho gia đình và các cặp đôi.</p>
-          </div>
+      </header>
+
+      <main class="main-content">
+        <div class="hero-section">
+            <div class="hero-text">
+                <div class="hero-title">Chào Mừng</div>
+                <p class="hero-subtitle">Đặt Phòng Của Khách Sạn Của Chúng Tôi Tại Đây:</p>
+            </div>
+            <a href="reserveroom.html"><button class="hero-button">Đặt Phòng</button></a>
         </div>
-        <div class="card">
-          <div class="image-3"></div>
-          <div class="copy">
-            <div class="div">Phòng VIP</div>
-            <p class="p">Tận hưởng các dịch vụ cao cấp nhất của chúng tôi!</p>
-          </div>
+        <img class="hero-image" src="img/hotel.jfif" />
+
+        <div class="room-list-section">
+            <h2 class="room-list-title">Danh Sách Phòng</h2>
+            <div class="room-cards-container">
+                <div class="card">
+                    <div class="image-placeholder image-don"></div>
+                    <div class="copy">
+                        <div class="room-name">Phòng Đơn</div>
+                        <p class="room-desc">Phòng đơn tiêu chuẩn với các dịch vụ cơ bản.</p>
+                        <a href="reserveroom.html" class="card-button">Đặt ngay</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image-placeholder image-doi"></div>
+                    <div class="copy">
+                        <div class="room-name">Phòng Đôi</div>
+                        <p class="room-desc">Lý tưởng cho gia đình và các cặp đôi.</p>
+                        <a href="reserveroom.html" class="card-button">Đặt ngay</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image-placeholder image-vip"></div>
+                    <div class="copy">
+                        <div class="room-name">Phòng VIP</div>
+                        <p class="room-desc">Tận hưởng các dịch vụ cao cấp nhất của chúng tôi!</p>
+                        <a href="reserveroom.html" class="card-button">Đặt ngay</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <a href="roomreserve.html"><button class="button"><div class="text-wrapper-2">Đặt ngay</div></button></a>
-      <div class="copy-2">
-        <div class="page-title">
-          <div class="text-wrapper-3">Chào Mừng</div>
-          <p class="text-wrapper-4">Đặt Phòng Của Khách Sạn Của Chúng Tôi Tại Đây:</p>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Khách Sạn AA</div>
+            <a href="admin.html"><button class="footer-button"><div class="footer-button-text">Quản Trị Hệ Thống</div></button></a>
         </div>
-        <a href="roomreserve.html"><button class="div-wrapper"><div class="text-wrapper-2">Đặt Phòng</div></button></a>
-      </div>
-      <a href="roomreserve.html"><button class="button-2"><div class="text-wrapper-2">Đặt ngay</div></button></a>
-      <a href="roomreserve.html"><button class="button-3"><div class="text-wrapper-2">Đặt ngay</div></button></a>
-      <div class="navigation">
-        <div class="text-wrapper-5">AA Hotel</div>
-        <div class="items">
-          <a href="roomreserve.html"><div class="text-wrapper-6">Đặt Phòng</div></a>
-          <div class="text-wrapper-6">Nhân Viên</div>
-          <a href="register.html"><div class="text-wrapper-6">Đăng Ký</div></a>
-          <button class="button-4"><div class="text-wrapper-7">Đăng Nhập</div></button>
-        </div>
-      </div>
-      <div class="navigation-footer">
-        <img class="divider" src="img/divider.svg" />
-        <div class="text-wrapper-8">Khách Sạn AA</div>
-        <button class="button-5"><div class="text-wrapper-9">Quản Trị Hệ Thống</div></button>
-      </div>
+      </footer>
     </div>
   </body>
 </html>

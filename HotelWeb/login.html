@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="globals.css" />
     <link rel="stylesheet" href="styleguide.css" />
-    <link rel="stylesheet" href="regist.css" />
+    <link rel="stylesheet" href="login.css" />
   </head>
   <body>
     <div class="page-container">
@@ -15,7 +15,7 @@
           <div class="nav-items">
             <a href="reserveroom.html" class="nav-link">Đặt Phòng</a>
             <a href="staff.html" class="nav-link">Nhân Viên</a>
-            <div class="nav-link active">Đăng Ký</div>
+            <a href="register.html" class="nav-link">Đăng Ký</a>
             <a href="login.html" class="nav-button"><div class="nav-button-text">Đăng Nhập</div></a>
           </div>
         </div>
@@ -23,29 +23,23 @@
       
       <main class="main-content">
         <div class="form-container">
-          <h1 class="form-title">Đăng Ký</h1>
+          <h1 class="form-title">Đăng Nhập</h1>
           <form class="form">
             <div class="input-group">
-              <label for="fullname">Họ và Tên*</label>
-              <input class="field" type="text" id="fullname" name="fullname" placeholder="Nguyễn Văn A" />
+              <label for="email">Email</label>
+              <input class="field" type="email" id="email" name="email" placeholder="NgVanA@gmail.com" />
             </div>
             <div class="input-group">
-              <label for="password">Mật Khẩu*</label>
-              <input class="field" type="password" id="password" name="password" placeholder="*******" />
+              <label for="password">Mật Khẩu</label>
+              <input class="field" type="password" id="password" name="password" placeholder="xxxxxx" />
             </div>
-            <div class="input-group">
-              <label for="phone">SĐT*</label>
-              <input class="field" type="tel" id="phone" name="phone" placeholder="0000-000-000" />
+            <div class="actions-container">
+              <button class="submit-button" type="submit">Đăng Nhập</button>
+              <div class="links-container">
+                <a href="changepass.html" class="form-link">Đổi Mật Khẩu</a>
+                <a href="register.html" class="form-link">Chưa là thành viên? Đăng Ký</a>
+              </div>
             </div>
-            <div class="input-group">
-              <label for="idcard">CCCD*</label>
-              <input class="field" type="text" id="idcard" name="idcard" placeholder="xxxxxxxxxxxx" />
-            </div>
-            <div class="input-group">
-              <label for="email">Email*</label>
-              <input class="field" type="email" id="email" name="email" placeholder="NguyenVanA@gmail.com" />
-            </div>
-            <button class="submit-button" type="submit">Đăng Ký</button>
           </form>
         </div>
       </main>
