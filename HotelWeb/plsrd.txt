@@ -1,0 +1,4 @@
+Tap database (neu muon lam host) bang querry da gui nhe.
+Tai xampp, khpi dpng và start 2 muc: Apache + Mysql de web co the chay trên trinh duyet.
+Go link dan tren thanh tim kiem (VD: http://localhost/Proofed%20HotelWeb/login.php) chu khong the nhan vao file tren may truc tiep giong html duoc =))
+CSDL duoc tao tren MySQL Workbench.
