@@ -50,7 +50,7 @@ CREATE TABLE BookingDetail (
     PRIMARY KEY (BookingID, ServiceID),
     FOREIGN KEY (BookingID) REFERENCES Booking(BookingID),
     FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID)
-);
+);  
 
 -- Hóa đơn
 CREATE TABLE Invoice (
@@ -95,14 +95,3 @@ ADD CONSTRAINT FK_Customer_User
     
     USE HotelManagement;
 
--- Xóa admin cũ không an toàn
-DELETE FROM Users WHERE Username = 'admin';
-
--- Thêm admin mới đã được mã hóa (mật khẩu vẫn là 'admin123')
-INSERT INTO Users (Username, PasswordHash, FullName, Role)
-VALUES (
-  'admin', 
-  '$2y$10$9.0Fq/N0vQz2j1cPyR/mU.v5.VimEwDY.3y0G./l0i2D5AKeB14tq', 
-  'Quản trị viên', 
-  'Admin'
-);

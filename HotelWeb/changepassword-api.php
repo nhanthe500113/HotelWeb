@@ -46,7 +46,7 @@ try {
         echo json_encode([
             'success' => true, 
             'message' => 'Đổi mật khẩu thành công! Vui lòng đăng nhập lại.',
-            'redirect' => 'login.html'
+            'redirect' => 'login.php'
         ]);
 
     } else {

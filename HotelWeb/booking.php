@@ -12,7 +12,7 @@
     <div class="page-container">
       <header class="navigation">
         <div class="nav-content-wrapper">
-          <a href="mainmenu.html" class="nav-logo">AA Hotel</a>
+          <a href="mainmenu.php" class="nav-logo">AA Hotel</a>
           <div class="nav-items">
     <a href="reserveroom.php" class="nav-link">Đặt Phòng</a>
 
