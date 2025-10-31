@@ -50,13 +50,13 @@ CREATE TABLE BookingDetail (
     PRIMARY KEY (BookingID, ServiceID),
     FOREIGN KEY (BookingID) REFERENCES Booking(BookingID),
     FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID)
-);  
+);
 
 -- Hóa đơn
 CREATE TABLE Invoice (
     InvoiceID INT AUTO_INCREMENT PRIMARY KEY,
     BookingID INT NOT NULL,
-    InvoiceDate DATETIME DEFAULT NOW(), -- Đã sửa GETDATE() thành NOW()
+    InvoiceDate DATETIME DEFAULT NOW(),
     TotalAmount DECIMAL(18,2),
     FOREIGN KEY (BookingID) REFERENCES Booking(BookingID)
 );
@@ -68,11 +68,11 @@ CREATE TABLE Users (
     PasswordHash VARCHAR(255) NOT NULL,
     FullName VARCHAR(100),
     Role VARCHAR(20) NOT NULL DEFAULT 'Customer',  -- 'Admin' hoặc 'Customer'
-    CreatedAt DATETIME DEFAULT NOW(), -- Đã sửa GETDATE() thành NOW()
+    CreatedAt DATETIME DEFAULT NOW(),
     Email VARCHAR(100)
 );
 
--- Dữ liệu mẫu (đã bỏ tiền tố N)
+
 INSERT INTO Users (Username, PasswordHash, FullName, Role)
 VALUES ('admin', 'admin123', 'Quản trị viên', 'Admin');
 
@@ -95,3 +95,14 @@ ADD CONSTRAINT FK_Customer_User
     
     USE HotelManagement;
 
+-- Xóa admin cũ không an toàn
+DELETE FROM Users WHERE Username = 'admin';
+
+-- Thêm admin mới đã được mã hóa (mật khẩu vẫn là 'admin123')
+INSERT INTO Users (Username, PasswordHash, FullName, Role)
+VALUES (
+  'admin', 
+  '$2y$10$9.0Fq/N0vQz2j1cPyR/mU.v5.VimEwDY.3y0G./l0i2D5AKeB14tq', 
+  'Quản trị viên', 
+  'Admin'
+);

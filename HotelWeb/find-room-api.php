@@ -10,15 +10,9 @@ $searchTerm = isset($_GET['searchTerm']) ? trim($_GET['searchTerm']) : '';
 
 // 4. Nếu searchTerm rỗng, trả về tất cả phòng (hoặc lỗi, tùy bạn chọn)
 if (empty($searchTerm)) {
-    // Tùy chọn 1: Trả về lỗi
+    //Trả về lỗi
      echo json_encode(['success' => false, 'message' => 'Vui lòng nhập số phòng để tìm.']);
      exit;
-    // Tùy chọn 2: Trả về tất cả phòng (giống get-rooms-api.php)
-    // $sql = "SELECT RoomID, RoomName, RoomType, Price, Status FROM Room ORDER BY RoomID ASC";
-    // $stmt = $pdo->query($sql);
-    // $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // echo json_encode(['success' => true, 'rooms' => $rooms]);
-    // exit;
 }
 
 try {

@@ -101,10 +101,10 @@ try {
             <h2>Thêm Người Dùng</h2>
             <div class="employee-form">
               <div class="input-group"><label>Mã Nhân Viên</label><input type="text" id="user-id-input" readonly placeholder="Tự động điền khi chọn"/></div>
-              <div class="input-group"><label>Họ và Tên*</label><input type="text" id="user-fullname-input" placeholder="Nguyễn Văn A"/></div>
-              <div class="input-group"><label>Email*</label><input type="email" id="user-email-input" placeholder="NgVanA@gmail.com"/></div>
-              <div class="input-group"><label>Tên đăng nhập*</label><input type="text" id="user-username-input" placeholder="nguyenvana"/></div>
-              <div class="input-group"><label>Mật Khẩu*</label><input type="password" id="user-password-input" placeholder="Để trống nếu không muốn đổi"/></div>
+              <div class="input-group"><label>Họ và Tên</label><input type="text" id="user-fullname-input" placeholder="Nguyễn Văn A"/></div>
+              <div class="input-group"><label>Email</label><input type="email" id="user-email-input" placeholder="NgVanA@gmail.com"/></div>
+              <div class="input-group"><label>Tên đăng nhập</label><input type="text" id="user-username-input" placeholder="nguyenvana"/></div>
+              <div class="input-group"><label>Mật Khẩu(LƯU Ý CHỈ DÙNG KHI KHÁCH HÀNG QUÊN MẬT KHẨU)</label><input type="password" id="user-password-input" placeholder="Để trống nếu không muốn đổi"/></div>
               <div class="input-group">
                 <label>Quyền Hạn*</label>
                 <select id="user-role-select">

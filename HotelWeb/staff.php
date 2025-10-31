@@ -103,7 +103,6 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
               <div class="input-group"><label>Ngày Trả Phòng (Sửa)</label><input type="date" id="customer-checkout-input" /></div>
             </div>
              <div class="action-buttons customer-actions">
-              <button class="btn-primary" id="customer-add-button" disabled title="Dùng trang Đặt Phòng để check-in">Thêm</button>
               <button class="btn-primary" id="customer-edit-button">Sửa (Ngày Trả)</button>
               <button class="btn-primary" id="customer-delete-button">Xóa (Trả Phòng)</button>
               <button class="btn-secondary" id="customer-print-invoice-button">In Hóa Đơn</button>
@@ -481,7 +480,7 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
             });
             
             // --- CÁC NÚT CŨ (Giữ nguyên) ---
-            customerEditButton.addEventListener('click', function() { /* ... (Giữ nguyên) ... */
+            customerEditButton.addEventListener('click', function() {
                 const newCheckoutDate = customerCheckoutInput.value;
                 if (!selectedBookingID) {
                     alert('Vui lòng chọn một khách hàng từ danh sách trước.');

@@ -106,7 +106,7 @@
                 
                 if (data.success) {
                     // Nếu đăng ký thành công, chuyển đến trang đăng nhập
-                    window.location.href = 'login.html'; 
+                    window.location.href = 'login.php'; 
                 }
             })
             .catch(error => {

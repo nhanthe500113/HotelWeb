@@ -73,8 +73,8 @@
             <div class="actions-container">
               <button class="submit-button" type="submit">Đăng Nhập</button>
               <div class="links-container">
-                <a href="changepass.html" class="form-link">Đổi Mật Khẩu</a>
-                <a href="register.html" class="form-link">Chưa là thành viên? Đăng Ký</a>
+                <a href="changepass.php" class="form-link">Đổi Mật Khẩu</a>
+                <a href="register.php" class="form-link">Chưa là thành viên? Đăng Ký</a>
               </div>
             </div>
           </form>

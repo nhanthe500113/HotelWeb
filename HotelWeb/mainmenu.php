@@ -65,7 +65,7 @@ session_start();
                     <div class="copy">
                         <div class="room-name">Phòng Đơn</div>
                         <p class="room-desc">Phòng đơn tiêu chuẩn với các dịch vụ cơ bản.</p>
-<a href="reserveroom.php" class="card-button">Đặt ngay</a>
+                        <a href="reserveroom.php" class="card-button">Đặt ngay</a>
                     </div>
                 </div>
                 <div class="card">
