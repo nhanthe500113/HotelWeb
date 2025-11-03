@@ -17,7 +17,7 @@ CREATE TABLE Customer (
     CustomerID INT AUTO_INCREMENT PRIMARY KEY,
     FullName VARCHAR(100) NOT NULL,
     Phone VARCHAR(20),
-    CCCD VARCHAR(20),
+    CCCD VARCHAR(20) UNIQUE,
     Address VARCHAR(200)
 );
 
@@ -72,19 +72,10 @@ CREATE TABLE Users (
     Email VARCHAR(100)
 );
 
-
-INSERT INTO Users (Username, PasswordHash, FullName, Role)
-VALUES ('admin', 'admin123', 'Quản trị viên', 'Admin');
-
 INSERT INTO Room (RoomName, RoomType, Price, Status)
 VALUES ('101', 'Đơn', 300000, 'Trống'),
        ('102', 'Đôi', 450000, 'Trống'),
        ('201', 'VIP', 800000, 'Trống');
-
-INSERT INTO Service (ServiceName, Price)
-VALUES ('Ăn sáng', 50000),
-       ('Giặt ủi', 30000),
-       ('Thuê xe máy', 150000);
        
        USE HotelManagement;
 
@@ -93,16 +84,3 @@ ADD COLUMN UserID INT UNIQUE,
 ADD CONSTRAINT FK_Customer_User
     FOREIGN KEY (UserID) REFERENCES Users(UserID);
     
-    USE HotelManagement;
-
--- Xóa admin cũ không an toàn
-DELETE FROM Users WHERE Username = 'admin';
-
--- Thêm admin mới đã được mã hóa (mật khẩu vẫn là 'admin123')
-INSERT INTO Users (Username, PasswordHash, FullName, Role)
-VALUES (
-  'admin', 
-  '$2y$10$9.0Fq/N0vQz2j1cPyR/mU.v5.VimEwDY.3y0G./l0i2D5AKeB14tq', 
-  'Quản trị viên', 
-  'Admin'
-);
