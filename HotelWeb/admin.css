@@ -1,6 +1,5 @@
 @import url("layout.css");
 
-/* Chỉ giữ lại các style riêng của trang admin panel */
 .panel-title {
   font-family: "Inter-Bold", Helvetica;
   font-weight: 700;
