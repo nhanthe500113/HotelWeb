@@ -17,19 +17,34 @@ if ($userID == $_SESSION['user_id']) {
 }
 
 try {
-    // (Lưu ý: Nếu UserID này đã liên kết với bảng Customer, CSDL của bạn cần cài đặt 'ON DELETE SET NULL')
-    $sql = "DELETE FROM Users WHERE UserID = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$userID]);
+    // [NÂNG CẤP] Dùng Transaction để đảm bảo an toàn
+    $pdo->beginTransaction();
 
-    if ($stmt->rowCount() > 0) {
-        echo json_encode(['success' => true, 'message' => 'Xóa tài khoản thành công!']);
+    // BƯỚC 1: Ngắt kết nối tài khoản này khỏi bảng Customer
+    // Đặt UserID = NULL trong bảng Customer để phá vỡ ràng buộc
+    $sqlUnlink = "UPDATE Customer SET UserID = NULL WHERE UserID = ?";
+    $stmtUnlink = $pdo->prepare($sqlUnlink);
+    $stmtUnlink->execute([$userID]);
+
+    // BƯỚC 2: Xóa tài khoản khỏi bảng Users
+    $sqlDelete = "DELETE FROM Users WHERE UserID = ?";
+    $stmtDelete = $pdo->prepare($sqlDelete);
+    $stmtDelete->execute([$userID]);
+
+    // BƯỚC 3: Hoàn tất
+    $pdo->commit();
+
+    if ($stmtDelete->rowCount() > 0) {
+        echo json_encode(['success' => true, 'message' => 'Xóa tài khoản thành công! (Hồ sơ khách hàng liên quan đã được ngắt kết nối).']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Không tìm thấy tài khoản để xóa.']);
     }
 
 } catch (Exception $e) {
-    // Bắt lỗi nếu không thể xóa (do ràng buộc khóa ngoại)
-    echo json_encode(['success' => false, 'message' => 'Lỗi CSDL: Không thể xóa tài khoản này (có thể do đã liên kết với khách hàng hoặc đơn đặt phòng). Lỗi: ' . $e->getMessage()]);
+    // Nếu có lỗi, hoàn tác lại
+    $pdo->rollBack();
+    
+    // Gửi về thông báo lỗi chi tiết
+    echo json_encode(['success' => false, 'message' => 'Lỗi CSDL khi xóa: ' . $e->getMessage()]);
 }
 ?>
