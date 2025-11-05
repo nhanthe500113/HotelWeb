@@ -1,11 +1,12 @@
 <?php 
+$currentPage = 'staff'; 
 session_start(); 
-// --- BẢO VỆ TRANG NHÂN VIÊN ---
+
 if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_SESSION['user_role'] !== 'Nhân viên')) {
     header('Location: mainmenu.php');
     exit;
 }
-// --- KẾT THÚC BẢO VỆ ---
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,24 +19,28 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
   </head>
   <body>
     <div class="page-container">
+      
       <header class="navigation">
         <div class="nav-content-wrapper">
-          <a href="mainmenu.php" class="nav-logo">AA Hotel</a>
+          <a href="mainmenu.php" class="nav-logo <?php if ($currentPage === 'mainmenu') echo 'active'; ?>">AA Hotel</a>
           <div class="nav-items">
-    <a href="reserveroom.php" class="nav-link">Đặt Phòng</a>
+    <a href="reserveroom.php" class="nav-link <?php if ($currentPage === 'reserveroom') echo 'active'; ?>">Đặt Phòng</a>
     <?php if (isset($_SESSION['user_id'])): 
         $role = $_SESSION['user_role'];
     ?>
         <span class="nav-link-welcome">Xin chào, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</span>
         <?php if ($role === 'Admin' || $role === 'Nhân viên'): ?>
-            <a href="staff.php" class="nav-link active">Panel Nhân Viên</a>
+            <a href="staff.php" class="nav-link <?php if ($currentPage === 'staff') echo 'active'; ?>">Panel Nhân Viên</a>
         <?php endif; ?>
         <?php if ($role === 'Admin'): ?>
-            <a href="admin.php" class="nav-link">Panel Quản Trị</a>
+            <a href="admin.php" class="nav-link <?php if ($currentPage === 'admin') echo 'active'; ?>">Panel Quản Trị</a>
+        <?php endif; ?>
+        <?php if ($role === 'Customer'): ?>
+            <a href="changepass.php" class="nav-link <?php if ($currentPage === 'changepass') echo 'active'; ?>">Đổi Mật Khẩu</a>
         <?php endif; ?>
         <a href="logout.php" class="nav-button"><div class="nav-button-text">Đăng Xuất</div></a>
     <?php else: ?>
-        <a href="register.php" class="nav-link">Đăng Ký</a>
+        <a href="register.php" class="nav-link <?php if ($currentPage === 'register') echo 'active'; ?>">Đăng Ký</a>
         <a href="login.php" class="nav-button"><div class="nav-button-text">Đăng Nhập</div></a>
     <?php endif; ?>
 </div>
@@ -72,10 +77,21 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
             <div class="action-buttons">
                 <input type="text" class="search-input" id="search-term-input" placeholder="Nhập số phòng để tìm">
                 <button class="btn-primary" id="search-room-button">Tìm Kiếm</button>
+                
                 <div class="button-group-right">
                     <button class="btn-secondary" id="update-room-button">Cập Nhật</button>
-                    <button class="btn-primary" id="create-room-button">Tạo Phòng</button> 
-                    <button class="btn-primary" id="delete-room-button">Xóa Phòng</button>
+                    
+                    <?php 
+                    
+                    if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'Admin'): 
+                    ?>
+                        <button class="btn-primary" id="create-room-button">Tạo Phòng</button> 
+                        <button class="btn-primary" id="delete-room-button">Xóa Phòng</button>
+                    
+                    <?php 
+                    
+                    endif; 
+                    ?>
                </div>
             </div>
             <div class="table-container">
@@ -140,7 +156,7 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // --- CÁC BIẾN CỦA QUẢN LÝ PHÒNG (Giữ nguyên) ---
+            
             const searchTermInput = document.getElementById('search-term-input');
             const searchRoomButton = document.getElementById('search-room-button');
             const roomTableBody = document.getElementById('room-table-body');
@@ -148,11 +164,11 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
             const roomTypeSelect = document.getElementById('room-type-select');
             const roomStatusSelect = document.getElementById('room-status-select');
             const roomPriceInput = document.getElementById('room-price-input');
-            const createRoomButton = document.getElementById('create-room-button');
-            const deleteRoomButton = document.getElementById('delete-room-button');
+            const createRoomButton = document.getElementById('create-room-button'); 
+            const deleteRoomButton = document.getElementById('delete-room-button'); 
             const updateRoomButton = document.getElementById('update-room-button');
 
-            // --- [CẬP NHẬT] CÁC BIẾN CỦA QUẢN LÝ KHÁCH HÀNG ---
+            
             const customerTableBody = document.getElementById('customer-table-body');
             const customerNameInput = document.getElementById('customer-name-input');
             const customerCccdInput = document.getElementById('customer-cccd-input');
@@ -163,19 +179,18 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
             const customerEditButton = document.getElementById('customer-edit-button');
             const customerDeleteButton = document.getElementById('customer-delete-button');
             const customerPrintButton = document.getElementById('customer-print-invoice-button');
-            // [MỚI] Các nút Lịch Sử
             const customerHistoryButton = document.getElementById('customer-history-button');
             const customerActiveButton = document.getElementById('customer-active-button');
             
             let selectedBookingID = null;
-            let customerViewMode = 'active'; // [MỚI] Biến trạng thái: 'active' hoặc 'history'
+            let customerViewMode = 'active'; 
 
-            // --- INITIAL LOAD ---
+            
             fetchRooms(); 
             fetchCustomers(); 
 
-            // --- CÁC HÀM CỦA QUẢN LÝ PHÒNG (Giữ nguyên) ---
-            function fetchRooms() { /* ... (Giữ nguyên) ... */
+            
+            function fetchRooms() {
                 fetch('get-rooms-api.php') 
                     .then(response => response.json()) 
                     .then(data => {
@@ -206,7 +221,8 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                         console.error('Fetch Error (get rooms):', error);
                     });
             }
-            searchRoomButton.addEventListener('click', function() { /* ... (Giữ nguyên) ... */
+            
+            searchRoomButton.addEventListener('click', function() {
                 const searchTerm = searchTermInput.value.trim();
                 if (!searchTerm) {
                     fetchRooms(); 
@@ -245,33 +261,38 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                         alert('Lỗi kết nối khi tìm kiếm phòng.');
                     });
             });
-            createRoomButton.addEventListener('click', function() { /* ... (Giữ nguyên) ... */
-                const roomName = roomNumberInput.value.trim();
-                const roomType = roomTypeSelect.value;
-                const price = roomPriceInput.value.replace(/[^0-9]/g, ''); 
-                if (!roomName || !roomType || roomTypeSelect.selectedIndex === 0 || !price || parseFloat(price) <= 0) {
-                    alert('Vui lòng điền Số Phòng, chọn Loại Phòng và nhập Giá hợp lệ (lớn hơn 0).');
-                    return;
-                }
-                const formData = new FormData();
-                formData.append('room_name', roomName);
-                formData.append('room_type', roomType);
-                formData.append('price', price); 
-                fetch('create-room-api.php', { method: 'POST', body: formData })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                        if (data.success) {
-                            fetchRooms(); 
-                            clearFormFields(); 
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Fetch Error (create room):', error);
-                        alert('Lỗi kết nối khi tạo phòng.');
-                    });
-            });
-            updateRoomButton.addEventListener('click', function() { /* ... (Giữ nguyên) ... */
+            
+            
+            if (createRoomButton) {
+                createRoomButton.addEventListener('click', function() { 
+                    const roomName = roomNumberInput.value.trim();
+                    const roomType = roomTypeSelect.value;
+                    const price = roomPriceInput.value.replace(/[^0-9]/g, ''); 
+                    if (!roomName || !roomType || roomTypeSelect.selectedIndex === 0 || !price || parseFloat(price) <= 0) {
+                        alert('Vui lòng điền Số Phòng, chọn Loại Phòng và nhập Giá hợp lệ (lớn hơn 0).');
+                        return;
+                    }
+                    const formData = new FormData();
+                    formData.append('room_name', roomName);
+                    formData.append('room_type', roomType);
+                    formData.append('price', price); 
+                    fetch('create-room-api.php', { method: 'POST', body: formData })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            if (data.success) {
+                                fetchRooms(); 
+                                clearFormFields(); 
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Fetch Error (create room):', error);
+                            alert('Lỗi kết nối khi tạo phòng.');
+                        });
+                });
+            }
+            
+            updateRoomButton.addEventListener('click', function() { 
                 const roomName = roomNumberInput.value.trim(); 
                 const roomType = roomTypeSelect.value;
                 const status = roomStatusSelect.value;
@@ -315,32 +336,37 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                     alert('Lỗi kết nối khi cập nhật phòng.');
                 });
             });
-            deleteRoomButton.addEventListener('click', function() { /* ... (Giữ nguyên) ... */
-                const roomNameToDelete = roomNumberInput.value.trim();
-                if (!roomNameToDelete) {
-                    alert('Vui lòng chọn hoặc nhập Số Phòng cần xóa vào ô "Số Phòng" ở trên.');
-                    return;
-                }
-                if (!confirm(`Bạn có chắc chắn muốn xóa phòng ${roomNameToDelete} không?`)) {
-                    return; 
-                }
-                const formData = new FormData();
-                formData.append('room_name', roomNameToDelete);
-                fetch('delete-room-api.php', { method: 'POST', body: formData })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                        if (data.success) {
-                            fetchRooms(); 
-                            clearFormFields(); 
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Fetch Error (delete room):', error);
-                        alert('Lỗi kết nối khi xóa phòng.');
-                    });
-            });
-            roomTableBody.addEventListener('click', function(event) { /* ... (Giữ nguyên) ... */
+            
+            
+            if (deleteRoomButton) {
+                deleteRoomButton.addEventListener('click', function() { 
+                    const roomNameToDelete = roomNumberInput.value.trim();
+                    if (!roomNameToDelete) {
+                        alert('Vui lòng chọn hoặc nhập Số Phòng cần xóa vào ô "Số Phòng" ở trên.');
+                        return;
+                    }
+                    if (!confirm(`Bạn có chắc chắn muốn xóa phòng ${roomNameToDelete} không?`)) {
+                        return; 
+                    }
+                    const formData = new FormData();
+                    formData.append('room_name', roomNameToDelete);
+                    fetch('delete-room-api.php', { method: 'POST', body: formData })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(data.message);
+                            if (data.success) {
+                                fetchRooms(); 
+                                clearFormFields(); 
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Fetch Error (delete room):', error);
+                            alert('Lỗi kết nối khi xóa phòng.');
+                        });
+                });
+            }
+            
+            roomTableBody.addEventListener('click', function(event) { 
                 const clickedRow = event.target.closest('tr'); 
                 if (clickedRow && clickedRow.dataset.roomName) { 
                     roomNumberInput.value = clickedRow.dataset.roomName;
@@ -351,9 +377,8 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                 }
             });
 
-            // --- [CẬP NHẬT] CÁC HÀM CỦA QUẢN LÝ KHÁCH HÀNG ---
             
-            // [CẬP NHẬT] Hàm vẽ bảng
+            
             function populateCustomerTable(customers) {
                 customerTableBody.innerHTML = ''; 
                 if (customers.length > 0) {
@@ -365,31 +390,29 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                         row.dataset.roomName = customer.RoomName;
                         row.dataset.checkIn = customer.CheckInDate;
                         row.dataset.checkOut = customer.CheckOutDate;
-                        row.dataset.status = customer.Status; // [MỚI]
+                        row.dataset.status = customer.Status; 
                         row.style.cursor = 'pointer';
-
                         row.innerHTML = `
                             <td>${escapeHtml(customer.CCCD)}</td>
                             <td>${escapeHtml(customer.FullName)}</td>
                             <td>${escapeHtml(customer.RoomName)}</td>
                             <td>${formatDate(customer.CheckInDate)}</td>
                             <td>${formatDate(customer.CheckOutDate)}</td>
-                            <td>${escapeHtml(customer.Status)}</td> `;
+                            <td>${escapeHtml(customer.Status)}</td>
+                        `;
                         customerTableBody.appendChild(row);
                     });
                 } else {
-                     customerTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Không tìm thấy khách hàng nào.</td></tr>'; // [SỬA] colspan="6"
+                     customerTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Không tìm thấy khách hàng nào.</td></tr>';
                 }
             }
 
-            // [CẬP NHẬT] Hàm tải khách
             function fetchCustomers() {
                 let url = 'get-customers-api.php';
                 if (customerViewMode === 'history') {
-                    url += '?history=all'; // Thêm param nếu ở chế độ lịch sử
+                    url += '?history=all'; 
                 }
-                
-                fetch(url) // Gọi URL động
+                fetch(url) 
                     .then(response => response.json())
                     .then(data => {
                         if (data.success && data.customers) {
@@ -405,7 +428,6 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                     });
             }
 
-            // [CẬP NHẬT] Click vào bảng khách
             customerTableBody.addEventListener('click', function(event) {
                 const clickedRow = event.target.closest('tr'); 
                 if (clickedRow && clickedRow.dataset.bookingId) {
@@ -415,13 +437,12 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                     customerRoomInput.value = clickedRow.dataset.roomName || '';
                     customerCheckoutInput.value = formatDateToInput(clickedRow.dataset.checkOut);
                     
-                    // [MỚI] Vô hiệu hóa nút nếu không phải 'Đang ở'
                     const status = clickedRow.dataset.status;
                     const isCheckOutDisabled = (status !== 'Đang ở');
                     
                     customerEditButton.disabled = isCheckOutDisabled;
                     customerDeleteButton.disabled = isCheckOutDisabled;
-                    customerPrintButton.disabled = false; // Luôn cho phép in
+                    customerPrintButton.disabled = false; 
                     
                     if (isCheckOutDisabled) {
                         customerEditButton.title = 'Chỉ có thể sửa đơn "Đang ở"';
@@ -433,21 +454,19 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                 }
             });
 
-            // [CẬP NHẬT] Nút Tìm kiếm
             customerSearchButton.addEventListener('click', function() {
                 const cccd = customerSearchInput.value.trim();
                 if (!cccd) {
-                    fetchCustomers(); // Nếu ô trống, tải lại (theo view mode hiện tại)
+                    fetchCustomers(); 
                     return;
                 }
                 
-                // Thêm param 'history' vào URL tìm kiếm
                 let url = `find-customer-api.php?cccd=${encodeURIComponent(cccd)}`;
                 if (customerViewMode === 'history') {
                     url += '&history=all'; 
                 }
 
-                fetch(url) // Gọi URL động
+                fetch(url) 
                     .then(response => response.json())
                     .then(data => {
                         if (data.success && data.customers) {
@@ -462,24 +481,20 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                     });
             });
 
-            // --- CÁC NÚT MỚI ---
-            // [MỚI] Sự kiện nút Xem Lịch Sử
             customerHistoryButton.addEventListener('click', function() {
-                customerViewMode = 'history'; // Đổi chế độ
-                fetchCustomers(); // Tải lại bảng
-                customerHistoryButton.style.display = 'none'; // Ẩn nút này
-                customerActiveButton.style.display = 'inline-flex'; // Hiển thị nút kia
+                customerViewMode = 'history'; 
+                fetchCustomers(); 
+                customerHistoryButton.style.display = 'none'; 
+                customerActiveButton.style.display = 'inline-flex'; 
             });
 
-            // [MỚI] Sự kiện nút Xem Khách Đang Ở
             customerActiveButton.addEventListener('click', function() {
-                customerViewMode = 'active'; // Đổi về chế độ mặc định
-                fetchCustomers(); // Tải lại bảng
-                customerHistoryButton.style.display = 'inline-flex'; // Hiển thị nút này
-                customerActiveButton.style.display = 'none'; // Ẩn nút kia
+                customerViewMode = 'active'; 
+                fetchCustomers(); 
+                customerHistoryButton.style.display = 'inline-flex'; 
+                customerActiveButton.style.display = 'none'; 
             });
             
-            // --- CÁC NÚT CŨ (Giữ nguyên) ---
             customerEditButton.addEventListener('click', function() {
                 const newCheckoutDate = customerCheckoutInput.value;
                 if (!selectedBookingID) {
@@ -510,7 +525,8 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                         alert('Lỗi kết nối khi cập nhật.');
                     });
             });
-            customerDeleteButton.addEventListener('click', function() { /* ... (Giữ nguyên) ... */
+            
+            customerDeleteButton.addEventListener('click', function() { 
                 if (!selectedBookingID) {
                     alert('Vui lòng chọn một khách hàng từ danh sách để trả phòng.');
                     return;
@@ -536,7 +552,8 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                         alert('Lỗi kết nối khi trả phòng.');
                     });
             });
-            customerPrintButton.addEventListener('click', function() { /* ... (GiGữ nguyên) ... */
+            
+            customerPrintButton.addEventListener('click', function() { 
                 if (!selectedBookingID) {
                     alert('Vui lòng chọn một khách hàng từ danh sách để in hóa đơn.');
                     return;
@@ -544,13 +561,13 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                 window.open(`orderdetail.php?booking_id=${selectedBookingID}`, '_blank');
             });
 
-            // --- HELPER FUNCTIONS ---
-            function formatCurrency(amount) { /* ... (Giữ nguyên) ... */
+            
+            function formatCurrency(amount) {
                 const numberAmount = parseFloat(amount);
                 if (isNaN(numberAmount)) return '';
                 return numberAmount.toLocaleString('vi-VN') + ' VNĐ'; 
             }
-            function formatDate(sqlDateTime) { /* ... (Giữ nguyên) ... */
+            function formatDate(sqlDateTime) {
                 if (!sqlDateTime) return 'Chưa có'; 
                 const date = new Date(sqlDateTime);
                 const day = String(date.getDate()).padStart(2, '0');
@@ -558,7 +575,7 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                 const year = date.getFullYear();
                 return `${day}/${month}/${year}`;
             }
-            function formatDateToInput(sqlDateTime) { /* ... (Giữ nguyên) ... */
+            function formatDateToInput(sqlDateTime) {
                 if (!sqlDateTime) return ''; 
                 const date = new Date(sqlDateTime);
                 const year = date.getFullYear();
@@ -566,21 +583,19 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                 const day = String(date.getDate()).padStart(2, '0');
                 return `${year}-${month}-${day}`;
             }
-            function escapeHtml(unsafe) { /* ... (Giữ nguyên) ... */
+            function escapeHtml(unsafe) {
                 if (unsafe === null || unsafe === undefined) return '';
                 return unsafe.toString()
                      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
                      .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
             }
-            function clearFormFields() { /* ... (Giữ nguyên) ... */
+            function clearFormFields() {
                 roomNumberInput.value = '';
                 roomTypeSelect.selectedIndex = 0; 
                 roomStatusSelect.selectedIndex = 0;
                 roomPriceInput.value = '';
                 searchTermInput.value = ''; 
             }
-            
-            // [CẬP NHẬT] Hàm xóa form khách
             function clearCustomerFormFields() {
                 customerNameInput.value = '';
                 customerCccdInput.value = '';
@@ -589,7 +604,6 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                 customerSearchInput.value = '';
                 selectedBookingID = null; 
                 
-                // [MỚI] Reset lại các nút
                 customerEditButton.disabled = false;
                 customerDeleteButton.disabled = false;
                 customerPrintButton.disabled = false;
@@ -597,7 +611,7 @@ if (!isset($_SESSION['user_role']) || ($_SESSION['user_role'] !== 'Admin' && $_S
                 customerDeleteButton.title = 'Xóa (Trả phòng)';
             }
 
-        }); // End of DOMContentLoaded listener
+        }); 
     </script>
   </body>
 </html>
